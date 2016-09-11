@@ -1,0 +1,25 @@
+{
+  "name": "set",
+  "version": "1.0.0",
+  "description": "Play the game \"Set\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava",
+    "coverage": "nyc npm test",
+    "precoveragehtml": "npm run coverage",
+    "coveragehtml": "nyc report --reporter=html",
+    "lint": "standard"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "js-combinatorics": "^0.5.2",
+    "knuth-shuffle": "^1.0.1"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "nyc": "^8.1.0",
+    "standard": "^8.0.0"
+  }
+}

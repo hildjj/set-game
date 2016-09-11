@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink" 
+     height="360" width="235">
+  <defs>
+    <pattern id="hatch" 
+      width="3" height="3" 
+      patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="10" stroke-width="2" stroke="purple"/>
+    </pattern>
+  </defs>
+	<rect x="5" y="5" height="350" width="225" rx="10" ry="10"
+    style="fill:white" stroke="grey" stroke-width="2"/>
+  <polygon id='diamond'
+      points="30,180 117,145 205,180 117,215" 
+      stroke="purple"
+      stroke-width="4"
+      stroke-linejoin="round"
+      fill="url(#hatch)"/>
+  <use y="100" xlink:href="#diamond" />
+  <use y="-100" xlink:href="#diamond" />
+</svg>
