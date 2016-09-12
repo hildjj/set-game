@@ -1,0 +1,61 @@
+doctype xml
+svg(xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="1.1"
+    height="360"
+    width="235")
+  metadata(xmlns:set='https://github.com/hildjj/set-game')
+    set:num= num
+    set:fill= fill
+    set:color= color
+    set:shape= shape
+  defs
+    case fill
+      when 'Hatched'
+        pattern(id="hatch" width="5" height="3" patternUnits="userSpaceOnUse")
+          line(x1="0" y1="0" x2="0" y2="10" stroke-width="2" class='setcolor')
+        - fill = 'url(#hatch)'
+      when 'Solid'
+        - fill = color
+      when 'Open'
+        - fill = 'white'
+    case shape
+      when 'Squiggle'
+        path(id="shape" class="setcolor setline"
+             d="m 33,180 c 6,-13 11,-23 26,-28 15,-5 31,-1 58,7 23,7 36,0 43,-3 7,-4 17,-9 30,-9 13,0 18,21 12,33 -5,11 -14,23 -26,28 -12,5 -32,1 -59,-7 -17,-5 -29,-3 -42,3 -9,4 -18,10 -30,9 -13,0 -19,-18 -12,-33 z")
+      when 'Diamond'
+        polygon(id="shape" class="setcolor setline"
+                points="30,180 117,145 205,180 117,215")
+      when 'Pill'
+        rect(id="shape" class="setcolor setline"
+             x="30" y="145"
+             width="175" height="70"
+             rx="35")
+    style(type="text/css").
+      .setcolor {
+        stroke: #{color};
+        fill: #{fill};
+      }
+      .setline {
+        stroke-width: 4;
+        stroke-linejoin: round;
+      }
+  rect( x="5"
+        y="5"
+        height="350"
+        width="225"
+        rx="10"
+        ry="10"
+        fill="white"
+        stroke="grey"
+        stroke-width="2")
+  case num
+    when 1
+      use(xlink:href="#shape")
+    when 2
+      use(y="-50" xlink:href="#shape")
+      use(y="50" xlink:href="#shape")
+    when 3
+      use(y="-100" xlink:href="#shape")
+      use(xlink:href="#shape")
+      use(y="100" xlink:href="#shape")
