@@ -3,14 +3,22 @@
   "version": "1.0.0",
   "description": "Play the game \"Set\"",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hildjj/set-game.git"
+  },
   "scripts": {
     "test": "ava",
     "coverage": "nyc npm test",
     "precoveragehtml": "npm run coverage",
     "coveragehtml": "nyc report --reporter=html",
-    "lint": "standard"
+    "lint": "standard",
+    "release": "npm version patch && git push --follow-tags && npm publish"
   },
-  "author": "",
+  "author": {
+    "name": "Joe Hildebrand",
+    "email": "joe-github@cursive.net"
+  },
   "license": "MIT",
   "dependencies": {
     "chalk": "^1.1.3",
@@ -23,5 +31,8 @@
     "pug": "^2.0.0-beta6",
     "pug-cli": "^1.0.0-alpha6",
     "standard": "^8.0.0"
+  },
+    "engines": {
+    "node": ">=6"
   }
 }
