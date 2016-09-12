@@ -1,5 +1,5 @@
 {
-  "name": "set",
+  "name": "set-game",
   "version": "1.0.1",
   "description": "Play the game \"Set\"",
   "main": "index.js",
