@@ -16,6 +16,10 @@ while (!hand.done) {
       break
     }
     hand.deal(Math.max(12 - hand.length, 3))
-    console.log(hand)
+    if (hand.length > 0) {
+      console.log(hand)
+    } else {
+      break
+    }
   }
 }

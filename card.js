@@ -184,6 +184,9 @@ class Hand {
     return Combinatorics.combination(this.cards, num)
   }
   firstSet (num = 3) {
+    if (this.length === 0) {
+      return null
+    }
     const it = this.combinations(num)
     it.lazyFilter(([i, j, k]) => i.isSet(j, k))
     return it.next()
