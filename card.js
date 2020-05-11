@@ -1,5 +1,6 @@
 'use strict'
 
+const util = require('util')
 const chalk = require('chalk')
 const Combinatorics = require('js-combinatorics')
 const shuffle = require('knuth-shuffle').knuthShuffle
@@ -100,6 +101,9 @@ class Card {
 
   inspect () {
     return ColorMap[this.color](`${Array(this.num + 1).join(ShapeMap[this.shape])} ${FillMap[this.fill]}`)
+  }
+  [util.inspect.custom] () {
+    return this.inspect()
   }
 
   isSet (c2, c3) {
