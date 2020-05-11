@@ -138,6 +138,9 @@ class Deck {
     return this.cards.splice(-num)
   }
   inspect () { return this.cards }
+  [util.inspect.custom] () {
+    return this.inspect()
+  }
 }
 exports.Deck = Deck
 
@@ -187,6 +190,12 @@ class Hand {
   }
   get length () {
     return this.cards.length
+  }
+  inspect () {
+    return this.cards
+  }
+  [util.inspect.custom] () {
+    return this.inspect()
   }
 }
 exports.Hand = Hand
