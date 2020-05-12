@@ -9,6 +9,9 @@ const FILLS = ['Solid', 'Hatched', 'Open']
 const COLORS = ['purple', 'green', 'red']
 const SHAPES = ['Pill', 'Squiggle', 'Diamond']
 
+// TODO: fix this.  it's bad.
+let count = 0
+
 const FillMap = {
   Solid: '|',
   Hatched: '/',
@@ -100,7 +103,8 @@ class Card {
   }
 
   inspect () {
-    return ColorMap[this.color](`${Array(this.num + 1).join(ShapeMap[this.shape])} ${FillMap[this.fill]}`)
+    const txt = `${Array(this.num + 1).join(ShapeMap[this.shape])} ${FillMap[this.fill]}`
+    return ColorMap[this.color](txt.padEnd(7))
   }
   [util.inspect.custom] () {
     return this.inspect()
@@ -116,6 +120,25 @@ class Card {
 
   name () {
     return `${this.num}${this.fill[0]}${this.color[0]}${this.shape[0]}`
+  }
+
+  html () {
+    const name = this.name()
+    return `<img src='icons/${name}.svg' alt='${name}'>`
+  }
+
+  static compare (a, b) {
+    let ret = a.num - b.num
+    if (ret === 0) {
+      ret = a.color.localeCompare(b.color)
+      if (ret === 0) {
+        ret = a.fill.localeCompare(b.fill)
+        if (ret === 0) {
+          ret = a.shape.localeCompare(b.shape)
+        }
+      }
+    }
+    return ret
   }
 }
 exports.Card = Card
@@ -144,35 +167,101 @@ class Deck {
 }
 exports.Deck = Deck
 
+/**
+ * One set of cards out on the table at a time.  This is a snapshot of
+ * what was shown.
+ */
+class Board {
+  constructor (cards) {
+    this.cards = [...cards]
+    this.sets = []
+  }
+  inspect () {
+    let ret = ''
+    for (let i=0; i<this.cards.length; i+=3) {
+      ret += `${this.cards[i].inspect()}${this.cards[i + 1].inspect()}${this.cards[i + 2].inspect()}\n`
+    }
+    for (const set of this.sets) {
+      ret += (++count + ': ').padStart(7)
+      set.sort(Card.compare).forEach(c => {
+        ret += c.inspect()
+      })
+      ret += '\n'
+    }
+    return ret
+  }
+  [util.inspect.custom] () {
+    return this.inspect()
+  }
+  html () {
+    let ret = '  <div class="board">'
+    for (let i=0; i<this.cards.length; i+=3) {
+      ret += `
+    <div class="row">
+      ${this.cards[i].html()}
+      ${this.cards[i + 1].html()}
+      ${this.cards[i + 2].html()}
+    </div>\n`
+    }
+    for (const set of this.sets) {
+      ret += `\n    <div class="set">\n`
+      set.sort(Card.compare).forEach(c => {
+        ret += `      ${c.html()}\n`
+      })
+      ret +=  '    </div>\n'
+    }
+    ret += '  </div>\n'
+    ret += '<hr>\n'
+    return ret
+  }
+}
+exports.Board = Board
+
 class Hand {
   constructor (deck) {
     this.deck = deck || new Deck()
     this.deck.shuffle()
     this.cards = []
-    this.last = false
-    this.done = false
+    this.history = []
+  }
+  play () {
+    this.deal(12)
+    // we're done when there are:
+    // no more sets to take off the board and
+    // no more cards in the deck
+    while (true) {
+      const set = this.firstSet()
+      if (set) {
+        this.remove(set)
+      } else {
+        if (!this.deal(Math.max(12 - this.length, 3))) {
+          // there weren't any cards left in the deck.
+          // If there are cards left on the board, and we've changed
+          // since the last time we printed, print again, with no matching
+          // sets
+          if ((this.cards.length > 0) &&
+              (this.history[this.history.length - 1]).sets.length > 0) {
+            this.history.push(new Board(this.cards))
+          }
+          break
+        }
+      }
+    }
   }
   deal (num = 3) {
-    if (this.done) {
-      return []
+    const cards = this.deck.deal(num)
+    if (cards.length > 0) {
+      this.cards = [...this.cards, ...cards]
+      this.history.push(new Board(this.cards))
+      return this.cards
     }
-    let cards = this.deck.deal(num)
-    if (cards.length === 0) {
-      this.last = true
-    } else {
-      this.cards = this.cards.concat(cards)
-    }
-    if (this.cards.length < 3) {
-      this.done = true
-      return []
-    }
-    return this.cards
+    return null
   }
-  remove (card) {
-    if (!Array.isArray(card)) {
-      card = [card]
+  remove (cards) {
+    if (!Array.isArray(cards)) {
+      cards = [cards]
     }
-    card.forEach((c) => {
+    cards.forEach((c) => {
       let ind = this.cards.indexOf(c)
       if (ind === -1) {
         throw new Error('Unknown card being removed')
@@ -189,16 +278,50 @@ class Hand {
     }
     const it = this.combinations(num)
     it.lazyFilter(([i, j, k]) => i.isSet(j, k))
-    return it.next()
+    const set = it.next()
+    if (set) {
+      this.history[this.history.length - 1].sets.push(set)
+    }
+    return set
   }
   get length () {
     return this.cards.length
   }
   inspect () {
-    return this.cards
+    return this.history.map(h => h.inspect()).join('-------------------\n')
   }
   [util.inspect.custom] () {
     return this.inspect()
+  }
+  html () {
+    let ret = `\
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sample Game</title>
+  <style>
+body {
+  counter-reset: set;
+}
+img {
+  width: 75px;
+}
+.set {
+  margin-left: 225px;
+}
+.set::before {
+  counter-increment: set;
+  content: counter(set) ": ";
+  vertical-align: top;
+}
+  </style>
+</head>
+<body>
+${this.history.map(h => h.html()).join('')}
+</body>
+</html>`
+    return ret
   }
 }
 exports.Hand = Hand

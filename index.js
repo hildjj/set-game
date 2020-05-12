@@ -1,25 +1,13 @@
 'use strict'
 const {Hand} = require('./card')
 
-let set = null
-let count = 0
+const argv = process.argv.slice(2)
+
 const hand = new Hand()
-hand.deal(12)
-console.log(hand)
-while (!hand.done) {
-  set = hand.firstSet()
-  if (set) {
-    console.log(count++, hand.length, set)
-    hand.remove(set)
-  } else {
-    if (hand.last) {
-      break
-    }
-    hand.deal(Math.max(12 - hand.length, 3))
-    if (hand.length > 0) {
-      console.log(hand)
-    } else {
-      break
-    }
-  }
+hand.play()
+
+if (argv.shift() === '--html') {
+  console.log(hand.html())
+} else {
+  console.log(hand)
 }

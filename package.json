@@ -26,9 +26,9 @@
   "devDependencies": {
     "ava": "^3.8.2",
     "nyc": "^15.0.1",
-    "pug": "^2.0.0-beta6",
-    "pug-cli": "^1.0.0-alpha6",
-    "standard": "^14.3.4"
+    "standard": "^14.3.4",
+    "pug": "^2.0.4",
+    "pug-cli": "^1.0.0-alpha6"
   },
   "engines": {
     "node": ">=6"
