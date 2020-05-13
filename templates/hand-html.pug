@@ -1,0 +1,24 @@
+doctype html
+html(lang=en)
+  head
+    meta(charset=UTF-8)
+    title Sample Game
+    style.
+      body {
+        counter-reset: set;
+      }
+      img {
+        width: 75px;
+      }
+      .set {
+        margin-left: 225px;
+      }
+      .set::before {
+        counter-increment: set;
+        content: counter(set) ": ";
+        vertical-align: top;
+      }
+  body
+    each board in obj.history
+      != board.html()
+

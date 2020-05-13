@@ -21,13 +21,13 @@
   "dependencies": {
     "chalk": "^4.0.0",
     "js-combinatorics": "^0.5.2",
-    "knuth-shuffle": "^1.0.1"
+    "knuth-shuffle": "^1.0.1",
+    "pug": "^2.0.4"
   },
   "devDependencies": {
     "ava": "^3.8.2",
     "nyc": "^15.0.1",
     "standard": "^14.3.4",
-    "pug": "^2.0.4",
     "pug-cli": "^1.0.0-alpha6"
   },
   "engines": {

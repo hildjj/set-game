@@ -4,13 +4,7 @@ const util = require('util')
 const chalk = require('chalk')
 const Combinatorics = require('js-combinatorics')
 const shuffle = require('knuth-shuffle').knuthShuffle
-
-const FILLS = ['Solid', 'Hatched', 'Open']
-const COLORS = ['purple', 'green', 'red']
-const SHAPES = ['Pill', 'Squiggle', 'Diamond']
-
-// TODO: fix this.  it's bad.
-let count = 0
+const Formatted = require('./formatted')
 
 const FillMap = {
   Solid: '|',
@@ -28,6 +22,10 @@ const ShapeMap = {
   Diamond: '\u25ca'
 }
 
+const FILLS = Object.keys(FillMap)
+const COLORS = Object.keys(ColorMap)
+const SHAPES = Object.keys(ShapeMap)
+
 function different (v) {
   return (v[0] !== v[1]) && (v[0] !== v[2]) && (v[1] !== v[2])
 }
@@ -39,8 +37,9 @@ function sameOrDiff (obs, prop) {
   return same(props) || different(props)
 }
 
-class Card {
+class Card extends Formatted {
   constructor (num, fill, color, shape) {
+    super()
     if (typeof num === 'string') {
       this.num = parseInt(num[0])
       switch (num[1]) {
@@ -106,9 +105,6 @@ class Card {
     const txt = `${Array(this.num + 1).join(ShapeMap[this.shape])} ${FillMap[this.fill]}`
     return ColorMap[this.color](txt.padEnd(7))
   }
-  [util.inspect.custom] () {
-    return this.inspect()
-  }
 
   isSet (c2, c3) {
     const obs = [this, c2, c3]
@@ -120,11 +116,6 @@ class Card {
 
   name () {
     return `${this.num}${this.fill[0]}${this.color[0]}${this.shape[0]}`
-  }
-
-  html () {
-    const name = this.name()
-    return `<img src='icons/${name}.svg' alt='${name}'>`
   }
 
   static compare (a, b) {
@@ -167,58 +158,32 @@ class Deck {
 }
 exports.Deck = Deck
 
+class Set extends Formatted {
+  static count = 0
+  constructor (cards) {
+    super()
+    this.count = ++Set.count
+    this.cards = cards.sort(Card.compare)
+  }
+}
+exports.Set = Set
+
 /**
  * One set of cards out on the table at a time.  This is a snapshot of
  * what was shown.
  */
-class Board {
+class Board extends Formatted {
   constructor (cards) {
+    super()
     this.cards = [...cards]
     this.sets = []
-  }
-  inspect () {
-    let ret = ''
-    for (let i=0; i<this.cards.length; i+=3) {
-      ret += `${this.cards[i].inspect()}${this.cards[i + 1].inspect()}${this.cards[i + 2].inspect()}\n`
-    }
-    for (const set of this.sets) {
-      ret += (++count + ': ').padStart(7)
-      set.sort(Card.compare).forEach(c => {
-        ret += c.inspect()
-      })
-      ret += '\n'
-    }
-    return ret
-  }
-  [util.inspect.custom] () {
-    return this.inspect()
-  }
-  html () {
-    let ret = '  <div class="board">'
-    for (let i=0; i<this.cards.length; i+=3) {
-      ret += `
-    <div class="row">
-      ${this.cards[i].html()}
-      ${this.cards[i + 1].html()}
-      ${this.cards[i + 2].html()}
-    </div>\n`
-    }
-    for (const set of this.sets) {
-      ret += `\n    <div class="set">\n`
-      set.sort(Card.compare).forEach(c => {
-        ret += `      ${c.html()}\n`
-      })
-      ret +=  '    </div>\n'
-    }
-    ret += '  </div>\n'
-    ret += '<hr>\n'
-    return ret
   }
 }
 exports.Board = Board
 
-class Hand {
+class Hand extends Formatted {
   constructor (deck) {
+    super()
     this.deck = deck || new Deck()
     this.deck.shuffle()
     this.cards = []
@@ -280,48 +245,12 @@ class Hand {
     it.lazyFilter(([i, j, k]) => i.isSet(j, k))
     const set = it.next()
     if (set) {
-      this.history[this.history.length - 1].sets.push(set)
+      this.history[this.history.length - 1].sets.push(new Set(set))
     }
     return set
   }
   get length () {
     return this.cards.length
-  }
-  inspect () {
-    return this.history.map(h => h.inspect()).join('-------------------\n')
-  }
-  [util.inspect.custom] () {
-    return this.inspect()
-  }
-  html () {
-    let ret = `\
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Sample Game</title>
-  <style>
-body {
-  counter-reset: set;
-}
-img {
-  width: 75px;
-}
-.set {
-  margin-left: 225px;
-}
-.set::before {
-  counter-increment: set;
-  content: counter(set) ": ";
-  vertical-align: top;
-}
-  </style>
-</head>
-<body>
-${this.history.map(h => h.html()).join('')}
-</body>
-</html>`
-    return ret
   }
 }
 exports.Hand = Hand

@@ -5,21 +5,22 @@ svg(xmlns="http://www.w3.org/2000/svg"
     height="360"
     width="235")
   metadata(xmlns:set='https://github.com/hildjj/set-game')
-    set:num= num
-    set:fill= fill
-    set:color= color
-    set:shape= shape
+    set:num= obj.num
+    set:fill= obj.fill
+    set:color= obj.color
+    set:shape= obj.shape
   defs
-    case fill
+    - let fill = obj.fill
+    case obj.fill
       when 'Hatched'
         pattern(id="hatch" width="5" height="3" patternUnits="userSpaceOnUse")
           line(x1="0" y1="0" x2="0" y2="10" stroke-width="2" class='setcolor')
         - fill = 'url(#hatch)'
       when 'Solid'
-        - fill = color
+        - fill = obj.color
       when 'Open'
         - fill = 'white'
-    case shape
+    case obj.shape
       when 'Squiggle'
         path(id="shape" class="setcolor setline"
              d="m 33,180 c 6,-13 11,-23 26,-28 15,-5 31,-1 58,7 23,7 36,0 43,-3 7,-4 17,-9 30,-9 13,0 18,21 12,33 -5,11 -14,23 -26,28 -12,5 -32,1 -59,-7 -17,-5 -29,-3 -42,3 -9,4 -18,10 -30,9 -13,0 -19,-18 -12,-33 z")
@@ -33,7 +34,7 @@ svg(xmlns="http://www.w3.org/2000/svg"
              rx="35")
     style(type="text/css").
       .setcolor {
-        stroke: #{color};
+        stroke: #{obj.color};
         fill: #{fill};
       }
       .setline {
@@ -49,7 +50,7 @@ svg(xmlns="http://www.w3.org/2000/svg"
         fill="white"
         stroke="grey"
         stroke-width="2")
-  case num
+  case obj.num
     when 1
       use(xlink:href="#shape")
     when 2
