@@ -12,7 +12,8 @@
     "coverage": "nyc --reporter=html npm test",
     "lint": "standard",
     "release": "npm version patch && git push --follow-tags && npm publish",
-    "dev": "npm run coverage && light-server -w 'lib/*.js test/*.js # npm run coverage # reload' -o coverage"
+    "dev": "npm run coverage && light-server -w 'lib/*.js test/*.js # npm run coverage # reload' -o coverage",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": {
     "name": "Joe Hildebrand",
