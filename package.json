@@ -11,7 +11,8 @@
     "test": "ava",
     "coverage": "nyc --reporter=html npm test",
     "lint": "standard",
-    "release": "npm version patch && git push --follow-tags && npm publish"
+    "release": "npm version patch && git push --follow-tags && npm publish",
+    "dev": "npm run coverage && light-server -w 'lib/*.js test/*.js # npm run coverage # reload' -o coverage"
   },
   "author": {
     "name": "Joe Hildebrand",
@@ -30,9 +31,10 @@
   },
   "devDependencies": {
     "ava": "^3.8.2",
+    "light-server": "github:hildjj/light-server#update-dependencies-2020-05-11",
     "nyc": "^15.0.1",
-    "standard": "^14.3.4",
-    "pug-cli": "^1.0.0-alpha6"
+    "pug-cli": "^1.0.0-alpha6",
+    "standard": "^14.3.4"
   },
   "engines": {
     "node": ">=14"
