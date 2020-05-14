@@ -1,0 +1,11 @@
+coverage/
+node_modules/
+.nyc_output/
+jsconfig.jsontypings/
+jsconfig.json
+typings/
+typings.json
+index.html
+test/
+.travis.yml
+.editorconfig
