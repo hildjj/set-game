@@ -1,11 +1,20 @@
-```
 # install
-npm install set-game
+`npm install -g set-game`
+
 # play a game:
-node index.js
+`set-game play --html`
+
+TODO: output HTML with enough JS to play the game for real in the browser,
+rather than just auto-solving each board.
+
 # check a board
-node solve.js
-#<type cards in number, fill, color, shape order, like:
-1ord # 1 open red diamond
+`set-game solve`
+
+type cards in number, fill, color, shape order, separated by spaces or newlines,
+so for 1 open red diamond:
+```
+1ord
 ^D
 ```
+
+Send an EOF (`^D` or `^Z` on Windows) when done
