@@ -1,10 +1,10 @@
 - for (let i=0; i<obj.cards.length; i+=3) {
-  != obj.cards[i].inspect()
-  != obj.cards[i + 1].inspect()
-  != obj.cards[i + 2].inspect()
+  != obj.cards[i].text(opts)
+  != obj.cards[i + 1].text(opts)
+  != obj.cards[i + 2].text(opts)
   != "\n"
 - }
 
 each set in obj.sets
-  != set.text()
-
+  != set.text(opts)
+  != "\n"

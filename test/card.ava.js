@@ -1,6 +1,6 @@
 'use strict'
 const test = require('ava')
-const {Card, Deck} = require('../card')
+const { Card, Deck } = require('../lib/index')
 
 test('Card', t => {
   const c = new Card(1, 'Striped', 'green', 'Squiggle')

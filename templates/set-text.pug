@@ -1,4 +1,3 @@
 != `${obj.count}: `.padStart(7)
 each c in obj.cards
-  != c.inspect()
-!= "\n"
+  != c.text(opts)

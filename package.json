@@ -1,8 +1,8 @@
 {
   "name": "set-game",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Play the game \"Set\"",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/hildjj/set-game.git"
@@ -18,11 +18,15 @@
     "email": "joe-github@cursive.net"
   },
   "license": "MIT",
+  "directories": {
+    "bin": "bin"
+  },
   "dependencies": {
     "chalk": "^4.0.0",
     "js-combinatorics": "^0.5.2",
     "knuth-shuffle": "^1.0.1",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "yargs": "^15.3.1"
   },
   "devDependencies": {
     "ava": "^3.8.2",
@@ -31,6 +35,6 @@
     "pug-cli": "^1.0.0-alpha6"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=14"
   }
 }

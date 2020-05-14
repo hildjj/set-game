@@ -1,0 +1,4 @@
+each card, index in obj.cards
+  != card.text(opts)
+  if (index + 1) % 9 === 0
+    != "\n"

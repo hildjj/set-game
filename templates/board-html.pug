@@ -1,12 +1,12 @@
 .board
   - for (let i=0; i<obj.cards.length; i+=3) {
   .row
-    != obj.cards[i].html()
-    != obj.cards[i + 1].html()
-    != obj.cards[i + 2].html()
+    != obj.cards[i].html(opts)
+    != obj.cards[i + 1].html(opts)
+    != obj.cards[i + 2].html(opts)
   - }
 
   each set in obj.sets
-    != set.html()
+    != set.html(opts)
 
 hr
