@@ -18,3 +18,7 @@ so for 1 open red diamond:
 ```
 
 Send an EOF (`^D` or `^Z` on Windows) when done
+
+[![Build Status](https://travis-ci.org/hildjj/set-game.svg?branch=master)](https://travis-ci.org/hildjj/set-game)
+
+[![Coverage Status](https://coveralls.io/repos/github/hildjj/set-game/badge.svg?branch=master)](https://coveralls.io/github/hildjj/set-game?branch=master)
