@@ -1,6 +1,6 @@
-'use strict'
-const test = require('ava')
-const { Card, Hand, Deck } = require('../lib/index')
+import {Card, Deck, Hand} from '../lib/index.js'
+import {stripVTControlCharacters} from 'util'
+import test from 'ava'
 
 test('Card', t => {
   const c1 = new Card(1, 'Hatched', 'green', 'Squiggle')
@@ -32,7 +32,7 @@ test('Card', t => {
   t.is(c2.shape, 'Squiggle')
 
   t.is(c2.text({colors: false}), '2HgS ')
-  t.is(c2.text({colors: true}), '~~ /   ')
+  t.is(stripVTControlCharacters(c2.text({colors: true})), '~~ /   ')
   t.is(c2.text(), '2HgS ')
   t.is(c2.name(), '2HgS')
 })
@@ -51,7 +51,7 @@ test('Deck', t => {
   const ordered = [...d.cards]
   d.shuffle()
   t.is(d.cards.length, 81)
-  t.notDeepEqual(d.cards, ordered) // this test will fail one in 2^^81 times
+  t.notDeepEqual(d.cards, ordered) // This test will fail one in 2^^81 times
   const cards = d.deal(3)
   t.is(cards.length, 3)
 })
@@ -68,7 +68,7 @@ test('Hand', t => {
 test('Hand remove', t => {
   const h = new Hand()
   h.deal()
-  const card = h.cards[0]
+  const [card] = h.cards
   h.remove(card)
   t.throws(() => h.remove(card))
   t.is(h.length, 2)
@@ -84,7 +84,7 @@ test('leftover', t => {
   const h = new Hand()
   h.deck.cards = []
   h.add(board)
-  t.is(h.combinations().length, 20)
+  t.is(h.combinations().length, 20n)
   h.play()
   t.is(h.length, board.length)
 })
