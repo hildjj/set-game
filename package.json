@@ -6,46 +6,38 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hildjj/set-game.git"
+    "url": "git+https://github.com/hildjj/set-game.git"
   },
   "scripts": {
-    "test": "c8 ava"
+    "test": "c8 ava",
+    "lint": "eslint ."
   },
   "author": {
     "name": "Joe Hildebrand",
     "email": "joe-github@cursive.net"
   },
   "license": "MIT",
-  "directories": {
-    "bin": "bin"
+  "bin": {
+    "set-game": "bin/set-game.js"
   },
   "dependencies": {
-    "chalk": "^5.3.0",
-    "js-combinatorics": "^2.1.1",
+    "chalk": "^5.4.1",
+    "js-combinatorics": "^2.1.2",
     "knuth-shuffle": "^1.0.8",
-    "pug": "^3.0.2",
+    "pug": "^3.0.3",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@cto.af/eslint-config": "2.0.3",
-    "ava": "^5.3.1",
-    "c8": "8.0.0",
-    "eslint": "8.44.0",
-    "eslint-plugin-jsdoc": "46.4.3",
-    "eslint-plugin-n": "16.0.1",
+    "@cto.af/eslint-config": "5.1.7",
+    "ava": "^6.2.0",
+    "c8": "10.1.3",
+    "eslint": "9.19.0",
+    "eslint-plugin-jsdoc": "50.6.3",
+    "eslint-plugin-n": "17.15.1",
     "js-xiterable": "0.2.2"
   },
-  "pnpm": {
-    "overrides": {
-      "semver": ">=7.5.3",
-      "word-wrap": "npm:@aashutoshrathi/word-wrap"
-    }
-  },
-  "overrides": {
-    "semver": ">=7.5.3",
-    "word-wrap": "npm:@aashutoshrathi/word-wrap"
-  },
+  "packageManager": "pnpm@9.15.4",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   }
 }
