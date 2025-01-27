@@ -1,6 +1,6 @@
 {
   "name": "set-game",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Play the game \"Set\"",
   "main": "lib/index.js",
   "type": "module",
