@@ -56,13 +56,13 @@ packages:
     resolution: {integrity: sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/parser@7.26.5':
-    resolution: {integrity: sha512-SRJ4jYmXRqV1/Xc+TIVG84WjHBXKlxO9sHQnA2Pf12QQEAp1LOh6kDzNHXcUnbH1QI0FDoPPVOt+vyUDucxpaw==}
+  '@babel/parser@7.26.7':
+    resolution: {integrity: sha512-kEvgGGgEjRUutvdVvZhbn/BxVt+5VSpwXz1j3WYXQbXDo8KzFOPNG2GQbdAiNq8g6wn1yKk7C/qrke03a84V+w==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  '@babel/types@7.26.5':
-    resolution: {integrity: sha512-L6mZmwFDK6Cjh1nRCLXpa6no13ZIioJDz7mdkzHv399pThrTa/k0nUlNaenOeh2kWu/iaOQYElEpKPUswUa9Vg==}
+  '@babel/types@7.26.7':
+    resolution: {integrity: sha512-t8kDRGrKXyp6+tjUh7hw2RLyclsW4TRoRvRHtSyAX9Bb5ldlFh+90YAYY6awRXrlB4G5G2izNeGySpATlFzmOg==}
     engines: {node: '>=6.9.0'}
 
   '@bcoe/v8-coverage@1.0.2':
@@ -161,8 +161,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@mapbox/node-pre-gyp@2.0.0-rc.0':
-    resolution: {integrity: sha512-nhSMNprz3WmeRvd8iUs5JqkKr0Ncx46JtPxM3AhXes84XpSJfmIwKeWXRpsr53S7kqPkQfPhzrMFUxSNb23qSA==}
+  '@mapbox/node-pre-gyp@2.0.0':
+    resolution: {integrity: sha512-llMXd39jtP0HpQLVI37Bf1m2ADlEb35GYSh1SDSLsBhR+5iCxiNGlT31yqbNtVHygHAtMy6dWFERpU2JgufhPg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -501,8 +501,8 @@ packages:
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  emittery@1.0.3:
-    resolution: {integrity: sha512-tJdCJitoy2lrC2ldJcqN4vkqJ00lT+tOWNT1hBJjO/3FDMJa5TTIiYGCKGkn/WfCyOzUMObeohbVTj00fhiLiA==}
+  emittery@1.1.0:
+    resolution: {integrity: sha512-rsX7ktqARv/6UQDgMaLfIqUWAEzzbCQiVh7V9rhDXp6c37yoJcks12NVD+XPkgl4AEavmNhVfrhGoqYwIsMYYA==}
     engines: {node: '>=14.16'}
 
   emoji-regex@10.4.0:
@@ -1410,11 +1410,11 @@ snapshots:
 
   '@babel/helper-validator-identifier@7.25.9': {}
 
-  '@babel/parser@7.26.5':
+  '@babel/parser@7.26.7':
     dependencies:
-      '@babel/types': 7.26.5
+      '@babel/types': 7.26.7
 
-  '@babel/types@7.26.5':
+  '@babel/types@7.26.7':
     dependencies:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
@@ -1527,7 +1527,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@mapbox/node-pre-gyp@2.0.0-rc.0':
+  '@mapbox/node-pre-gyp@2.0.0':
     dependencies:
       consola: 3.4.0
       detect-libc: 2.0.3
@@ -1623,7 +1623,7 @@ snapshots:
 
   '@vercel/nft@0.27.10':
     dependencies:
-      '@mapbox/node-pre-gyp': 2.0.0-rc.0
+      '@mapbox/node-pre-gyp': 2.0.0
       '@rollup/pluginutils': 5.1.4
       acorn: 8.14.0
       acorn-import-attributes: 1.9.5(acorn@8.14.0)
@@ -1717,7 +1717,7 @@ snapshots:
       concordance: 5.0.4
       currently-unhandled: 0.4.1
       debug: 4.4.0
-      emittery: 1.0.3
+      emittery: 1.1.0
       figures: 6.1.0
       globby: 14.0.2
       ignore-by-default: 2.1.0
@@ -1746,7 +1746,7 @@ snapshots:
 
   babel-walk@3.0.0-canary-5:
     dependencies:
-      '@babel/types': 7.26.5
+      '@babel/types': 7.26.7
 
   balanced-match@1.0.2: {}
 
@@ -1862,8 +1862,8 @@ snapshots:
 
   constantinople@4.0.1:
     dependencies:
-      '@babel/parser': 7.26.5
-      '@babel/types': 7.26.5
+      '@babel/parser': 7.26.7
+      '@babel/types': 7.26.7
 
   convert-source-map@2.0.0: {}
 
@@ -1901,7 +1901,7 @@ snapshots:
 
   eastasianwidth@0.2.0: {}
 
-  emittery@1.0.3: {}
+  emittery@1.1.0: {}
 
   emoji-regex@10.4.0: {}
 
@@ -2737,8 +2737,8 @@ snapshots:
 
   with@7.0.2:
     dependencies:
-      '@babel/parser': 7.26.5
-      '@babel/types': 7.26.5
+      '@babel/parser': 7.26.7
+      '@babel/types': 7.26.7
       assert-never: 1.4.0
       babel-walk: 3.0.0-canary-5
 

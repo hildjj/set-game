@@ -20,4 +20,5 @@ so for 1 open red diamond:
 Send an EOF (`^D` or `^Z` on Windows) when done
 
 ---
-[![Coverage Status](https://coveralls.io/repos/github/hildjj/set-game/badge.svg?branch=master)](https://coveralls.io/github/hildjj/set-game?branch=master)
+[![Tests](https://github.com/hildjj/set-game/actions/workflows/node.js.yml/badge.svg)](https://github.com/hildjj/set-game/actions/workflows/node.js.yml)
+[![codecov](https://codecov.io/gh/hildjj/set-game/graph/badge.svg?token=X1vzE7gjJp)](https://codecov.io/gh/hildjj/set-game)
