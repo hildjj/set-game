@@ -17,12 +17,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x, 23.x]
+        node-version: [20, 22, 24]
 
     steps:
       - uses: actions/checkout@v4
       - name: Install pnpm
-        run: corepack enable
+        uses: pnpm/action-setup@v4
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:

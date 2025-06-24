@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable no-console */
 import {Card, Deck, Hand} from '../lib/index.js';
 import chalk from 'chalk';
 import {fileURLToPath} from 'node:url';
