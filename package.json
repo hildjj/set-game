@@ -21,22 +21,21 @@
     "set-game": "bin/set-game.js"
   },
   "dependencies": {
-    "chalk": "^5.4.1",
+    "chalk": "^5.6.0",
     "js-combinatorics": "^2.1.2",
     "knuth-shuffle": "^1.0.8",
     "pug": "^3.0.3",
     "yargs": "^18.0.0"
   },
   "devDependencies": {
-    "@cto.af/eslint-config": "6.0.9",
-    "ava": "^6.4.0",
+    "@cto.af/eslint-config": "6.0.13",
+    "ava": "^6.4.1",
     "c8": "10.1.3",
-    "eslint": "9.29.0",
-    "eslint-plugin-jsdoc": "51.2.3",
-    "eslint-plugin-n": "17.20.0",
+    "eslint": "9.34.0",
+    "eslint-plugin-jsdoc": "54.2.1",
     "js-xiterable": "0.2.2"
   },
-  "packageManager": "pnpm@10.12.3",
+  "packageManager": "pnpm@10.15.1",
   "engines": {
     "node": ">=20"
   }
