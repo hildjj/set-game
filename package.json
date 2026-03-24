@@ -10,7 +10,8 @@
   },
   "scripts": {
     "test": "c8 ava",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "npm run lint && npm run test"
   },
   "author": {
     "name": "Joe Hildebrand",
