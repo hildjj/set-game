@@ -1,6 +1,6 @@
 {
   "name": "set-game",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Play the game \"Set\"",
   "main": "lib/index.js",
   "type": "module",
